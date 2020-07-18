@@ -3,21 +3,27 @@ package com.codecool;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class FileWordAnalyzer {
-    private final FilePartReader filePartReader = new FilePartReader();
+    private final FilePartReader filePartReader;
+
+    public FileWordAnalyzer(FilePartReader filePartReader) {
+        this.filePartReader = filePartReader;
+    }
 
     public List<String> getWordsOrderedAlphabetically() throws IOException {
         String fileText = filePartReader.readLines();
-        String[] words = fileText.split("\\b");
-        Arrays.sort(words);
-        return new ArrayList<>(Arrays.asList(words));
+        String[] words = fileText.split("\\W+");
+        List<String> wordsList = new ArrayList<>(Arrays.asList(words));
+        wordsList.sort(String.CASE_INSENSITIVE_ORDER);
+        return wordsList;
     }
 
     public List<String> getWordsContainingSubstring(String subString) throws IOException {
         String fileText = filePartReader.readLines();
-        String[] words = fileText.split("\\b");
+        String[] words = fileText.split("\\W+");
         List<String> result = new ArrayList<>();
         for (String word : words) {
             if (word.toLowerCase().contains(subString.toLowerCase())) {
@@ -34,7 +40,7 @@ public class FileWordAnalyzer {
 
     public List<String> getStringsWhichPalindromes() throws IOException {
         String fileText = filePartReader.readLines();
-        String[] words = fileText.split("\\b");
+        String[] words = fileText.split("\\W+");
         List<String> result = new ArrayList<>();
         for (String word : words) {
             if (isPalindrome(word)) {

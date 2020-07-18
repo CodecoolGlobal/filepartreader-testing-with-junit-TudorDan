@@ -12,6 +12,12 @@ public class FilePartReader {
     private Integer fromLine;
     private Integer toLine;
 
+    public FilePartReader() {
+        filePath = "src/main/resources/invalidFile";
+        fromLine = -1;
+        toLine = -1;
+    }
+
     public void setup(String filePath, Integer fromLine, Integer toLine) {
         if (toLine < fromLine) {
             throw new IllegalArgumentException("fromLine greater than toLine");
