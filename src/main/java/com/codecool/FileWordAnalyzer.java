@@ -20,7 +20,7 @@ public class FileWordAnalyzer {
         String[] words = fileText.split("\\b");
         List<String> result = new ArrayList<>();
         for (String word : words) {
-            if (word.contains(subString)) {
+            if (word.toLowerCase().contains(subString.toLowerCase())) {
                 result.add(word);
             }
         }
@@ -28,8 +28,8 @@ public class FileWordAnalyzer {
     }
 
     private boolean isPalindrome(String word) {
-        String reverse = new StringBuilder(word).reverse().toString();
-        return word.equals(reverse);
+        String reverse = new StringBuilder(word).reverse().toString().toLowerCase();
+        return word.toLowerCase().equals(reverse);
     }
 
     public List<String> getStringsWhichPalindromes() throws IOException {
