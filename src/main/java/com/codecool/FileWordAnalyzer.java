@@ -1,10 +1,12 @@
+package com.codecool;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 public class FileWordAnalyzer {
-    private FilePartReader filePartReader = new FilePartReader();
+    private final FilePartReader filePartReader = new FilePartReader();
 
     public List<String> getWordsOrderedAlphabetically() throws IOException {
         String fileText = filePartReader.readLines();
